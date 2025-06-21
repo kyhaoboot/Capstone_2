@@ -21,6 +21,21 @@ class ProductServices {
     });
     return promise;
   }
+  getProductById(id) {
+    const promise = axios({
+      url: `https://684931ef45f4c0f5ee7063db.mockapi.io/api/Product_CapStone_2/${id}`,
+      method: "GET",
+    });
+    return promise;
+  }
+  onUpdateProductApi(product) {
+    const promise = axios({
+      url: `https://684931ef45f4c0f5ee7063db.mockapi.io/api/Product_CapStone_2/${product.id}`,
+      method: "PUT",
+      data: product,
+    });
+    return promise;
+  }
 }
 
 export default ProductServices;

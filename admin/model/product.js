@@ -7,8 +7,8 @@ class Product {
     _backCamera,
     _FrontCamera,
     _img,
-    _desc,
-    _type
+    _type,
+    _desc
   ) {
     this.id = _id;
     this.name = _name;
@@ -17,8 +17,8 @@ class Product {
     this.backCamera = _backCamera;
     this.frontCamera = _FrontCamera;
     this.img = _img;
-    this.desc = _desc;
     this.type = _type;
+    this.desc = _desc;
   }
 }
 

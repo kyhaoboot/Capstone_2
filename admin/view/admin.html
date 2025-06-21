@@ -70,6 +70,7 @@
     <!-- ********************** -->
     <!-- Table admin -->
     <!-- *********************** -->
+
     <section class="max-w-8xl mx-auto pt-10">
       <div class="flex justify-between">
         <!-- Thêm sản phẩm -->
@@ -89,7 +90,7 @@
           id="crud-modal"
           tabindex="-1"
           aria-hidden="true"
-          class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full"
+          class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full crud-modal_1"
         >
           <div class="relative p-4 w-full max-w-md max-h-full">
             <!-- Modal content -->
@@ -105,7 +106,7 @@
                 ></h3>
                 <button
                   type="button"
-                  class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                  class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white close"
                   data-modal-toggle="crud-modal"
                 >
                   <svg
@@ -140,8 +141,10 @@
                       id="nameProduct"
                       class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                       placeholder="Type product name"
+                      value=""
                       required=""
                     />
+                    <span class="text-red-600 hidden" id="errorName"> </span>
                   </div>
                   <div class="col-span-2">
                     <label
@@ -156,6 +159,7 @@
                       placeholder="$2999"
                       required=""
                     />
+                    <span class="text-red-600 hidden" id="errorPrice"> </span>
                   </div>
                   <div class="col-span-2">
                     <label
@@ -170,6 +174,7 @@
                       placeholder="Type product name"
                       required=""
                     />
+                    <span class="text-red-600 hidden" id="errorScreen"> </span>
                   </div>
                   <div class="col-span-2">
                     <label
@@ -184,6 +189,7 @@
                       placeholder="Type product name"
                       required=""
                     />
+                    <span class="text-red-600 hidden" id="errorBack"> </span>
                   </div>
                   <div class="col-span-2">
                     <label
@@ -198,6 +204,7 @@
                       placeholder="Type product name"
                       required=""
                     />
+                    <span class="text-red-600 hidden" id="errorFront"> </span>
                   </div>
                   <div class="col-span-2">
                     <label
@@ -212,6 +219,7 @@
                       placeholder="Type product name"
                       required=""
                     />
+                    <span class="text-red-600 hidden" id="errorImg"> </span>
                   </div>
                   <div class="col-span-2">
                     <label
@@ -222,11 +230,12 @@
                       id="typeProduct"
                       class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                     >
-                      <option selected="">Select Type</option>
-                      <option value="samsung">Samsung</option>
-                      <option value="apple">Apple</option>
-                      <option value="other">Other</option>
+                      <option value="">Select Type</option>
+                      <option value="Samsung">Samsung</option>
+                      <option value="Apple">Apple</option>
+                      <option value="Other">Other</option>
                     </select>
+                    <span class="text-red-600 hidden" id="errorType"> </span>
                   </div>
 
                   <div class="col-span-2">
@@ -240,6 +249,7 @@
                       class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                       placeholder="Write product description here"
                     ></textarea>
+                    <span class="text-red-600 hidden" id="errorDesc"> </span>
                   </div>
                 </div>
                 <div class="modal-footer"></div>
