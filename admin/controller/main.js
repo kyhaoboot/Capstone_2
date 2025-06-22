@@ -1,5 +1,6 @@
 import ProductServices from "./../services/product-services.js";
 import Product from "./../model/product.js";
+// import ProductList from "./../model/product-list.js";
 import Validation from "./../services/validation.js";
 
 // khởi tạo đối tượng service từ lớp đối tượng Productservices
@@ -10,12 +11,14 @@ const validate = new Validation();
 export const getEle = (id) => document.getElementById(id);
 
 // Lấy dữ liệu từ API
+let productList = [];
 const getListProduct = () => {
   const promise = services.getListProductApi();
 
   promise
     .then((result) => {
-      renderListProduct(result.data);
+      productList = result.data;
+      renderListProduct(productList);
     })
     .catch((error) => {
       console.log(error);
@@ -266,3 +269,44 @@ const onUpdateProduct = (id) => {
 
 // Khai báo hàm onUpdateProduct với đối tượng window
 window.onUpdateProduct = onUpdateProduct;
+
+// // Tìm kiếm sản phẩm
+// getEle("searchProductItem").addEventListener("keyup", () => {
+//   const keywords = searchProductItem.value.toLowerCase().trim();
+//   const result = productList.filter((product) =>
+//     product.name.toLowerCase().includes(keywords)
+//   );
+//   renderListProduct(result);
+// });
+
+// // Sắp xếp giá sản phẩm
+// getEle("sortPrice").addEventListener("change", () => {
+//   const sortType = getEle("sortPrice").value;
+//   let sortedList = [...productList];
+//   if (sortType === "asc") {
+//     sortedList.sort((a, b) => b.price - a.price);
+//   } else if (sortType === "desc") {
+//     sortedList.sort((a, b) => a.price - b.price);
+//   }
+//   renderListProduct(sortedList);
+// });
+
+// kết hợp tìm kiếm tên sản phẩm và lọc giá
+function applySearchAndSort() {
+  const keyword = getEle("searchProductItem").value.toLowerCase().trim();
+  const sortType = getEle("sortPrice").value;
+
+  let filtered = productList.filter((product) =>
+    product.name.toLowerCase().includes(keyword)
+  );
+
+  if (sortType === "asc") {
+    filtered.sort((a, b) => a.price - b.price);
+  } else if (sortType === "desc") {
+    filtered.sort((a, b) => b.price - a.price);
+  }
+
+  renderListProduct(filtered);
+}
+getEle("searchProductItem").addEventListener("keyup", applySearchAndSort);
+getEle("sortPrice").addEventListener("change", applySearchAndSort);
