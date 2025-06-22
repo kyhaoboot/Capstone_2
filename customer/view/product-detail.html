@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chi tiết sản phẩm</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+  <header class="bg-white p-4 shadow">
+    <a href="customer.html" class="text-blue-500">&larr; Quay lại danh sách</a>
+  </header>
+
+  <main id="productDetail" class="p-4 max-w-4xl mx-auto bg-white mt-4 rounded shadow"></main>
+
+  <script type="module">
+    import { getProducts } from '../services/product-services.js';
+    // import { addToCart } from '../model/cart.js';
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const id = urlParams.get('id');
+
+    getProducts().then(products => {
+      const product = products.find(p => p.id === id);
+      if (!product) return;
+
+      const container = document.getElementById('productDetail');
+      container.innerHTML = `
+        <div class="grid md:grid-cols-2 gap-6">
+          <img src="${product.img}" class="w-full h-64 object-contain bg-gray-100 rounded" />
+          <div>
+            <h2 class="text-2xl font-bold mb-2">${product.name}</h2>
+            <p class="text-red-600 font-semibold text-xl mb-4">${formatPrice(product.price)}</p>
+            <p class="mb-2"><strong>Màn hình:</strong> ${product.screen}</p>
+            <p class="mb-2"><strong>Camera sau:</strong> ${product.backCamera}</p>
+            <p class="mb-2"><strong>Camera trước:</strong> ${product.frontCamera}</p>
+            <p class="mb-4"><strong>Mô tả:</strong> ${product.desc}</p>
+          </div>
+        </div>`;
+    });
+
+    function formatPrice(price) {
+      return price.toLocaleString('vi-VN', {
+        style: 'currency',
+        currency: 'VND'
+      });
+    }
+
+    window.addToCart = addToCart;
+  </script>
+</body>
+</html>
